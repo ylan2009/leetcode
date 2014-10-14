@@ -1,9 +1,0 @@
-this is a test file
-
-this is a line I don't want to commit
-
-test_1
-
-test_2
-
-haha
