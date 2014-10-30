@@ -17,6 +17,34 @@ public:
 		}
 		return i+1;
 	}
+	int removeDuplicates_2(int A[], int n)
+	{
+		if(n<=2) return n;
+		int i = 0, j = 1;
+		const int MAX = 1;//为最多可以重复的个数减去1
+		int c = MAX;
+		while(j<n)
+		{
+			if(A[i] != A[j])
+			{
+				c = MAX;
+				i++;
+				A[i] = A[j];
+
+			}
+			else
+			{
+				if(c > 0)
+				{
+					i++;
+					A[i] = A[j];
+					c--;
+				}
+			}
+			j++;
+		}
+		return	i+1;
+	}
 };
 
 void swap(int *a, int *b)
@@ -60,7 +88,7 @@ int main()
     cout<<endl;
 	cout<<endl;
 	Solution s;
-	int c = s.removeDuplicates(a,30);
+	int c = s.removeDuplicates_2(a,30);
 	for(int i = 0; i < c; i++)
 		cout<<a[i]<<" ";
 	cout<<endl;
