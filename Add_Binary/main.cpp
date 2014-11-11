@@ -1,0 +1,47 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Solution{
+public:
+	string addBinary(string a, string b)
+	{
+		int i = a.length()-1,j = b.length()-1,t,s,flag = 0;
+		string result;
+		while(i>=0 && j>=0)
+		{
+			t = a[i] - '0';
+			s = b[j] - '0';
+			result = (char)((t + s + flag) % 2 + '0') + result;
+			flag = (t + s + flag) / 2;
+			i--;
+			j--;
+		}
+		while(i>=0)
+		{
+			t = a[i] - '0';
+			result = (char)((t + flag) % 2 + '0') + result;
+			flag = (t + flag) / 2;
+			i--;
+		}
+		while(j>=0)
+		{
+			s = b[j] - '0';
+			result = (char)((s + flag) % 2 + '0') + result;
+			flag = (s + flag) / 2;
+			j--;
+		}
+		if(flag)
+			result = (char)(flag + '0') + result;
+		return result;
+	}
+};
+int main()
+{
+	string a = "1001";
+	string b = "11101";
+	string c;
+	Solution s;
+	c = s.addBinary(a,b);
+	cout<<c<<endl;
+}
