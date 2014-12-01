@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+
+class Solution{
+public:
+	int record[100][100];
+	int uniquePaths(int m, int n){
+		for(int i = 0; i < 100; i++)
+			for(int j = 0; j < 100; j++)
+				record[i][j] = -1;
+		return up(m-1,n-1);
+	}
+	int up(int i,int j)
+	{
+		int num;
+		if(record[i][j] != -1) return record[i][j];
+		if(!i && !j) num = 1; 
+		else if(!i) num = up(0,j-1);
+		else if(!j) num = up(i-1,0);
+		else 
+		{
+			num = up(i-1,j)+up(i,j-1);
+			record[i][j] = num;
+		}
+		return num;
+	}
+};
+
+int main()
+{
+	Solution s;
+	cout<<s.uniquePaths(3,7)<<endl;
+}
